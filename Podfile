@@ -8,8 +8,6 @@ target 'BryanMandiriAssesment' do
   # Pods for BryanMandiriAssesment
   pod 'Moya', '~> 15.0'
   pod 'ObjectMapper', '~> 3.5'
-  pod 'RxSwift', '6.5.0'
-  pod 'RxCocoa', '6.5.0'
   pod 'Reusable'
   pod 'Kingfisher', '~> 7.0'
   pod 'SnapKit', '~> 5.0.0'
