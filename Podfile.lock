@@ -1,0 +1,64 @@
+PODS:
+  - Alamofire (5.6.4)
+  - Kingfisher (7.6.2)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - ObjectMapper (3.5.3)
+  - Reusable (4.1.2):
+    - Reusable/Storyboard (= 4.1.2)
+    - Reusable/View (= 4.1.2)
+  - Reusable/Storyboard (4.1.2)
+  - Reusable/View (4.1.2)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SnapKit (5.0.1)
+  - UIScrollView-InfiniteScroll (1.3.0)
+  - youtube-ios-player-helper (1.0.4)
+
+DEPENDENCIES:
+  - Kingfisher (~> 7.0)
+  - Moya (~> 15.0)
+  - ObjectMapper (~> 3.5)
+  - Reusable
+  - RxCocoa (= 6.5.0)
+  - RxSwift (= 6.5.0)
+  - SnapKit (~> 5.0.0)
+  - UIScrollView-InfiniteScroll (~> 1.3.0)
+  - youtube-ios-player-helper (~> 1.0.4)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - Moya
+    - ObjectMapper
+    - Reusable
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - UIScrollView-InfiniteScroll
+    - youtube-ios-player-helper
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  UIScrollView-InfiniteScroll: a30af3dec185edd26d6ad50c521aa277f3ebf177
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
+
+PODFILE CHECKSUM: f3cf1cafbbf2c7007a820aaede88847cb22c937f
+
+COCOAPODS: 1.11.3
