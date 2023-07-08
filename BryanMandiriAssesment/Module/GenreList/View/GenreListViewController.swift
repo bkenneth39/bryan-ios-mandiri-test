@@ -33,14 +33,15 @@ extension GenreListViewController: GenreListPresenterToViewProtocol {
     tblGenre.delegate = self
     tblGenre.dataSource = self
     tblGenre.register(cellType: GenreListTableViewCell.self)
+    tblGenre.register(cellType: EmptyDataTableViewCell.self)
   }
   
   func showLoading() {
-    
+    self.showLoadingView()
   }
   
   func hideLoading() {
-    
+    self.hideLoadingView()
   }
   
   func reloadData() {
@@ -52,10 +53,25 @@ extension GenreListViewController: GenreListPresenterToViewProtocol {
 extension GenreListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let presenter = presenter else {return 0}
+    if presenter.numberOfItems() == 0 {
+      return 1
+    }
     return presenter.numberOfItems()
   }
   
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if presenter?.numberOfItems() == 0 {
+      return tblGenre.frame.height
+    }
+    return UITableView.automaticDimension
+  }
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if presenter?.numberOfItems() == 0 {
+      let cell: EmptyDataTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+      return cell
+    }
+    
     let cell: GenreListTableViewCell = tableView.dequeueReusableCell(for: indexPath)
     let genre = presenter?.getGenre(index: indexPath.row)
     cell.lblGenreName.text = genre?.name

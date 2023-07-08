@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 extension String {
     var htmlToAttributedString: NSAttributedString? {
@@ -37,5 +38,35 @@ extension UIViewController {
       self.navigationController?.popViewController(animated: true)
     }))
     self.present(alert, animated: true, completion: nil)
+  }
+  
+  func showLoadingView() {
+    guard let currentWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive})
+        .compactMap({$0 as? UIWindowScene})
+        .first?.windows.filter({$0.isKeyWindow})
+        .first else { return }
+    
+    if currentWindow.viewWithTag(101) == nil {
+      let loadingView = LoadingView()
+      loadingView.tag = 101
+      currentWindow.addSubview(loadingView)
+      loadingView.snp.makeConstraints { make in
+        make.leading.equalTo(currentWindow.snp.leading)
+        make.top.equalTo(currentWindow.snp.top)
+        make.trailing.equalTo(currentWindow.snp.trailing)
+        make.bottom.equalTo(currentWindow.snp.bottom)
+      }
+    }
+  }
+  
+  func hideLoadingView() {
+    guard let currentWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive})
+        .compactMap({$0 as? UIWindowScene})
+        .first?.windows.filter({$0.isKeyWindow})
+        .first else { return }
+    
+    if let subView = currentWindow.viewWithTag(101) {
+      subView.removeFromSuperview()
+    }
   }
 }

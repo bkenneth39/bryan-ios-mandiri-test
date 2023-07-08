@@ -46,7 +46,7 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
   }
   
   func initData() {
-    
+    view?.showLoading()
     print("genreId: \(genreId)")
     interactor.fetchMovieList(param: .init(page: 1, withGenre: genreId))
     

@@ -30,12 +30,11 @@ extension MovieReviewsViewController: MovieReviewsPresenterToViewProtocol {
     tblReviews.dataSource = self
     tblReviews.separatorStyle = .none
     tblReviews.register(cellType: MovieReviewTableViewCell.self)
+    tblReviews.register(cellType: EmptyDataTableViewCell.self)
     tblReviews.infiniteScrollDirection = .vertical
     tblReviews.addInfiniteScroll { tblReviews in
       let startIndex = (self.presenter?.numberOfItems() ?? 0) - 1 <= 0 ? 0 : (self.presenter?.numberOfItems() ?? 0)
       self.presenter?.getMoreData {
-        
-        
         let endIndex = (self.presenter?.numberOfItems() ?? 0) - 1
         print("startIndex: \(startIndex), endIndex: \(endIndex)")
         if endIndex > startIndex {
@@ -56,11 +55,11 @@ extension MovieReviewsViewController: MovieReviewsPresenterToViewProtocol {
   }
   
   func showLoading() {
-    
+    self.showLoadingView()
   }
   
   func hideLoading() {
-    
+    self.hideLoadingView()
   }
   
   func reloadData() {
@@ -74,13 +73,32 @@ extension MovieReviewsViewController: UITableViewDelegate, UITableViewDataSource
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let presenter = presenter else {return 0}
+    
+    if presenter.numberOfItems() == 0 {
+      return 1
+    }
+    
     return presenter.numberOfItems()
   }
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+    if presenter?.numberOfItems() == 0 {
+      return tblReviews.frame.height
+    }
+    
     return UITableView.automaticDimension
   }
   
+  
+
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    if presenter?.numberOfItems() == 0 {
+      let cell: EmptyDataTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+      return cell
+    }
+    
     guard let review = presenter?.getReview(index: indexPath.row) else {return UITableViewCell()}
     let cell: MovieReviewTableViewCell = tableView.dequeueReusableCell(for: indexPath)
     cell.lblAuthor.text = review.author

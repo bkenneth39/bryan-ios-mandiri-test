@@ -37,6 +37,7 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
     colMovies.delegate = self
     colMovies.dataSource = self
     colMovies.register(cellType: MovieListCollectionViewCell.self)
+    colMovies.register(cellType: EmptyDataCollectionViewCell.self)
     colMovies.infiniteScrollDirection = .vertical
     colMovies.addInfiniteScroll { colMovies in
       print("infinite added")
@@ -61,11 +62,11 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
   }
   
   func showLoading() {
-    
+    self.showLoadingView()
   }
   
   func hideLoading() {
-    
+    self.hideLoadingView()
   }
   
   func reloadData() {
@@ -79,18 +80,32 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let presenter = presenter else {return 0}
     print("fetching sum items")
+    if presenter.numberOfItems() == 0 {
+      return 1
+    }
     return presenter.numberOfItems()
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    presenter?.didSelectMovie(index: indexPath.row)
+    if presenter?.numberOfItems() ?? 0 > 0 {
+      presenter?.didSelectMovie(index: indexPath.row)
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
+    if presenter?.numberOfItems() == 0 {
+      return CGSize(width: colMovies.frame.width, height: colMovies.frame.height)
+    }
+    
     return CGSize(width: UIScreen.main.bounds.width/4, height: UIScreen.main.bounds.height/3)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    if presenter?.numberOfItems() == 0 {
+      let cell: EmptyDataCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+      return cell
+    }
     let cell: MovieListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
     let movie = presenter?.getMovie(index: indexPath.row)
     let urlImage = URL(string: "https://image.tmdb.org/t/p/original/\(movie?.posterPath ?? "")")

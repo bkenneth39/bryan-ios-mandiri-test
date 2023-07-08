@@ -49,6 +49,7 @@ class MovieDetailPresenter: MovieDetailViewToPresenterProtocol {
   }
   
   func initData() {
+    view?.showLoading()
     interactor.fetchMovieDetail(movieId: movieId)
   }
   

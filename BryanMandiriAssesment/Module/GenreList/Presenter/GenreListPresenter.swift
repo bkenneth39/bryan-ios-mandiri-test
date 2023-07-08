@@ -35,6 +35,7 @@ class GenreListPresenter: GenreListViewToPresenterProtocol {
   }
   
   func initData() {
+    view?.showLoading()
     interactor.fetchMoviesGenre()
     view?.configureViews()
   }

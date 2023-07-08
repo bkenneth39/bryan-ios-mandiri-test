@@ -35,11 +35,11 @@ extension MovieDetailViewController: MovieDetailPresenterToViewProtocol {
   }
   
   func showLoading() {
-    
+    self.showLoadingView()
   }
   
   func hideLoading() {
-    
+    self.hideLoadingView()
   }
   
   func showError(message: String) {
