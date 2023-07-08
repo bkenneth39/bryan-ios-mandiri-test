@@ -20,9 +20,6 @@ class GenreListViewController: UIViewController {
     super.viewWillAppear(animated)
     presenter?.initData()
   }
-  
-  
-
 }
 
 extension GenreListViewController: GenreListPresenterToViewProtocol {

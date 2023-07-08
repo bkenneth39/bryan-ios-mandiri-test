@@ -15,7 +15,7 @@ protocol MovieReviewsPresenterToInteractorProtocol: AnyObject {
 
 protocol MovieReviewsInteractorToPresenterProtocol: AnyObject {
   func moviesReviewsFetchSuccess()
-  func moviesReviewsFetchFailed()
+  func moviesReviewsFetchFailed(message: String)
 }
 
 class MovieReviewsInteractor: MovieReviewsPresenterToInteractorProtocol {
@@ -30,12 +30,14 @@ class MovieReviewsInteractor: MovieReviewsPresenterToInteractorProtocol {
       NetworkService.shared.makeRequest(api: .getMovieReviews(param: param), mappableType: MovieReviewsResponse.self) { [weak self] result, error in
         
         if let error = error {
-          self?.presenter?.moviesReviewsFetchFailed()
-        } else if let result = result {
-          self?.movieReviews = result.results ?? []
+          self?.presenter?.moviesReviewsFetchFailed(message: error.localizedDescription)
+        } else if let result = result, let results = result.results {
+          self?.movieReviews = results
           self?.totalPages = result.totalPages ?? 0
           self?.pages += 1
           self?.presenter?.moviesReviewsFetchSuccess()
+        } else {
+          self?.presenter?.moviesReviewsFetchFailed(message: Constants.otherErrorMsg)
         }
       }
     }
@@ -45,10 +47,13 @@ class MovieReviewsInteractor: MovieReviewsPresenterToInteractorProtocol {
     if pages < totalPages {
       NetworkService.shared.makeRequest(api: .getMovieReviews(param: param), mappableType: MovieReviewsResponse.self) { [weak self] result, error in
         if let error = error {
-          self?.presenter?.moviesReviewsFetchFailed()
-        } else if let result = result {
-          self?.movieReviews.append(contentsOf: result.results ?? [])
+          self?.presenter?.moviesReviewsFetchFailed(message: error.localizedDescription)
+        } else if let result = result, let results = result.results {
+          self?.movieReviews.append(contentsOf: results)
           self?.pages += 1
+          completion()
+        } else {
+          self?.presenter?.moviesReviewsFetchFailed(message: Constants.otherErrorMsg)
           completion()
         }
       }

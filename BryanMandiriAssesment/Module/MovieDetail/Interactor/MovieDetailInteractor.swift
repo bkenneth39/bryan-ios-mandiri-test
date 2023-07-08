@@ -14,7 +14,7 @@ protocol MovieDetailPresenterToInteractorProtocol: AnyObject {
 
 protocol MovieDetailInteractorToPresenterProtocol: AnyObject {
   func movieDetailFetchSuccess()
-  func movieDetailFetchFailed()
+  func movieDetailFetchFailed(message: String)
   func movieDetailTrailerFetchSuccess()
   func movieDetailTrailerFetchFailed()
   
@@ -41,10 +41,12 @@ class MovieDetailInteractor: MovieDetailPresenterToInteractorProtocol {
     NetworkService.shared.makeRequest(api: .getMovieDetail(movieId: movieId), mappableType: MovieDetailResponse.self) { [weak self] result, error in
       
       if let error = error {
-        self?.presenter?.movieDetailFetchFailed()
-      } else if let result = result {
+        self?.presenter?.movieDetailFetchFailed(message: error.localizedDescription)
+      } else if let result = result, let _ = result.id {
         self?.movieDetail = result
         self?.presenter?.movieDetailFetchSuccess()
+      } else {
+        self?.presenter?.movieDetailFetchFailed(message: Constants.otherErrorMsg)
       }
     }
   }

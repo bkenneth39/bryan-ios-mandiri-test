@@ -22,6 +22,7 @@ protocol MovieDetailPresenterToViewProtocol: AnyObject {
   func configureViews()
   func showLoading()
   func hideLoading()
+  func showError(message: String)
   func reloadData()
 }
 
@@ -102,8 +103,9 @@ extension MovieDetailPresenter: MovieDetailInteractorToPresenterProtocol {
     view?.reloadData()
   }
   
-  func movieDetailFetchFailed() {
+  func movieDetailFetchFailed(message: String) {
     view?.hideLoading()
+    view?.showError(message: message)
   }
   
   func movieDetailTrailerFetchSuccess() {

@@ -33,7 +33,9 @@ extension Date {
 extension UIViewController {
   func showErrorAlert(message: String) {
     let alert = UIAlertController(title: "Error Loading Data", message: "\(message)", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    alert.addAction(UIAlertAction(title: "Back to previous page", style: .cancel, handler: { action in
+      self.navigationController?.popViewController(animated: true)
+    }))
     self.present(alert, animated: true, completion: nil)
   }
 }

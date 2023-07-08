@@ -61,6 +61,8 @@
 		ACA744222A596977002BDD27 /* MovieReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA744202A596977002BDD27 /* MovieReviewTableViewCell.swift */; };
 		ACA744232A596977002BDD27 /* MovieReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA744212A596977002BDD27 /* MovieReviewTableViewCell.xib */; };
 		ACA744262A59968C002BDD27 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA744252A59968C002BDD27 /* Constants.swift */; };
+		ACA744292A59AC6D002BDD27 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA744282A59AC6D002BDD27 /* LoadingView.swift */; };
+		ACA7442B2A59AC7C002BDD27 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA7442A2A59AC7C002BDD27 /* LoadingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		ACA744202A596977002BDD27 /* MovieReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewTableViewCell.swift; sourceTree = "<group>"; };
 		ACA744212A596977002BDD27 /* MovieReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieReviewTableViewCell.xib; sourceTree = "<group>"; };
 		ACA744252A59968C002BDD27 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ACA744282A59AC6D002BDD27 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		ACA7442A2A59AC7C002BDD27 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,7 @@
 		AC65DBDE2A575BD300F91BBE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ACA744272A59AC5A002BDD27 /* LoadingView */,
 				ACA744242A599683002BDD27 /* Constant */,
 				AC65DBDF2A575C0D00F91BBE /* Extensions */,
 			);
@@ -495,6 +500,15 @@
 			path = Constant;
 			sourceTree = "<group>";
 		};
+		ACA744272A59AC5A002BDD27 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				ACA744282A59AC6D002BDD27 /* LoadingView.swift */,
+				ACA7442A2A59AC7C002BDD27 /* LoadingView.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		C593C3E7E295E41DC8DDE1D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +595,7 @@
 				AC87B3D62A58B21A002349CC /* MovieDetailOverviewTableViewCell.xib in Resources */,
 				AC87B39F2A5813B0002349CC /* MovieListViewController.xib in Resources */,
 				AC87B3DA2A58B481002349CC /* SectionHeaderView.xib in Resources */,
+				ACA7442B2A59AC7C002BDD27 /* LoadingView.xib in Resources */,
 				AC65DBD22A5720E800F91BBE /* Main.storyboard in Resources */,
 				AC87B3952A57F3D1002349CC /* GenreListTableViewCell.xib in Resources */,
 				AC87B3CE2A5891AD002349CC /* MovieDetailInfoTableViewCell.xib in Resources */,
@@ -651,6 +666,7 @@
 				AC87B3B42A583B2D002349CC /* MovieListCollectionViewCell.swift in Sources */,
 				AC87B3C12A585FF0002349CC /* MovieDetailInteractor.swift in Sources */,
 				AC87B3B02A582087002349CC /* MovieListInteractor.swift in Sources */,
+				ACA744292A59AC6D002BDD27 /* LoadingView.swift in Sources */,
 				AC87B3D82A58B471002349CC /* SectionHeaderView.swift in Sources */,
 				AC65DBF42A57698C00F91BBE /* NetworkService.swift in Sources */,
 				ACA7441E2A595169002BDD27 /* MovieReviewsInteractor.swift in Sources */,

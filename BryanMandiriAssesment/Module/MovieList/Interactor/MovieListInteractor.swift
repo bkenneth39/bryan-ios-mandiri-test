@@ -53,15 +53,18 @@ class MovieListInteractor: MovieListPresenterToInteractorProtocol {
         if let error = error {
           self?.presenter?.movieListFetchFailed(message: error.localizedDescription)
           completion()
-        } else if let result = result {
-          self?.movies.append(contentsOf: result.results ?? [])
+        } else if let result = result, let results = result.results {
+          self?.movies.append(contentsOf: results)
           print("number of result: \(self?.movies.count)")
           self?.pages += 1
           completion()
+        } else {
+          self?.presenter?.movieListFetchFailed(message: Constants.otherErrorMsg)
+          completion()
         }
-        
-        
       }
+    } else {
+      completion()
     }
     
   }

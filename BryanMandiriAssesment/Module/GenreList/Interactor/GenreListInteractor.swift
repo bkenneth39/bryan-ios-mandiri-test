@@ -7,8 +7,7 @@
 
 import Foundation
 import ObjectMapper
-import RxSwift
-import RxRelay
+
 
 protocol GenreListPresenterToInteractorProtocol: AnyObject {
   func fetchMoviesGenre()
@@ -21,8 +20,6 @@ protocol GenreListInteractorToPresenterProcol: AnyObject {
 
 class GenreListInteractor: GenreListPresenterToInteractorProtocol {
   
-  let genreList: BehaviorRelay<[Genre]> = BehaviorRelay(value: [])
-  
   var genres: GenreList?
   var presenter: GenreListInteractorToPresenterProcol?
   
@@ -30,12 +27,10 @@ class GenreListInteractor: GenreListPresenterToInteractorProtocol {
     NetworkService.shared.makeRequest(api: .getGenreList, mappableType: GenreListResponse.self) { [weak self] (result, error) in
       if let error = error {
         self?.presenter?.moviesGenreFetchFailed(message: error.localizedDescription)
-      } else if let result = result {
+      } else if let result = result, let _ = result.genres {
         print("result: \(result)")
         self?.genres = result
-        print("genres count: \(self?.genres?.genres?.count)")
         self?.presenter?.moviesGenreFetchSuccess()
-        self?.genreList.accept(result.genres ?? [])
       } else {
         self?.presenter?.moviesGenreFetchFailed(message: Constants.otherErrorMsg)
       }

@@ -21,6 +21,7 @@ protocol MovieReviewsPresenterToViewProtocol: AnyObject {
   func configureViews()
   func showLoading()
   func hideLoading()
+  func showError(message: String)
   func reloadData()
 }
 
@@ -77,7 +78,7 @@ extension MovieReviewsPresenter: MovieReviewsInteractorToPresenterProtocol {
     view?.reloadData()
   }
   
-  func moviesReviewsFetchFailed() {
+  func moviesReviewsFetchFailed(message: String) {
     view?.hideLoading()
   }
   

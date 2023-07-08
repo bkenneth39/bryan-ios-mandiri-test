@@ -22,6 +22,8 @@ class MovieReviewsViewController: UIViewController {
 }
 
 extension MovieReviewsViewController: MovieReviewsPresenterToViewProtocol {
+
+  
   func configureViews() {
     self.title = "Reviews for \(presenter?.getTitle() ?? "") "
     tblReviews.delegate = self
@@ -47,6 +49,10 @@ extension MovieReviewsViewController: MovieReviewsPresenterToViewProtocol {
         tblReviews.finishInfiniteScroll()
       }
     }
+  }
+  
+  func showError(message: String) {
+    self.showErrorAlert(message: message)
   }
   
   func showLoading() {

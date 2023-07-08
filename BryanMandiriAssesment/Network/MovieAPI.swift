@@ -59,7 +59,7 @@ extension MovieAPI: TargetType {
   }
   
   var headers: [String : String]? {
-    return ["Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNmJkMzE4YjgwZjYwYzQ4OGM1M2I4ZTQzMWE4N2JiNCIsInN1YiI6IjY0YTZkNzZlNzI0ZGUxMDBhY2E2Yzk1MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3C89BzHbZliNwBLClDHu_RZ3NceUK09OVWEkWWTs37U"]
+    return ["Authorization": "Bearer \(Constants.apiKey)"]
   }
   
   

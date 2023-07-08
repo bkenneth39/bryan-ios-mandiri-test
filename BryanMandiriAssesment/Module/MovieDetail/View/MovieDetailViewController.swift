@@ -42,6 +42,10 @@ extension MovieDetailViewController: MovieDetailPresenterToViewProtocol {
     
   }
   
+  func showError(message: String) {
+    self.showErrorAlert(message: message)
+  }
+  
   func reloadData() {
     tblMovieDetail.reloadData()
   }
