@@ -35,7 +35,6 @@ class MovieListInteractor: MovieListPresenterToInteractorProtocol {
           self?.movies = results
           
           self?.totalPages = result.totalPages ?? 0
-          print("number of result: \(self?.movies.count)")
           self?.pages += 1
           self?.presenter?.movieListFetchSuccess()
         } else {
@@ -55,7 +54,6 @@ class MovieListInteractor: MovieListPresenterToInteractorProtocol {
           completion()
         } else if let result = result, let results = result.results {
           self?.movies.append(contentsOf: results)
-          print("number of result: \(self?.movies.count)")
           self?.pages += 1
           completion()
         } else {

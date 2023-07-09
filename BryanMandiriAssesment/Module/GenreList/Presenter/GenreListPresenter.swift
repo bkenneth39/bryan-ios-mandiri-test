@@ -41,7 +41,6 @@ class GenreListPresenter: GenreListViewToPresenterProtocol {
   }
   
   func numberOfItems() -> Int {
-    print("genres count: \(interactor.genres?.genres?.count ?? 0)")
     return interactor.genres?.genres?.count ?? 0
   }
   
@@ -60,7 +59,6 @@ class GenreListPresenter: GenreListViewToPresenterProtocol {
 extension GenreListPresenter: GenreListInteractorToPresenterProcol {
   
   func moviesGenreFetchSuccess() {
-    print("fetch success")
     view?.hideLoading()
     view?.reloadData()
   }

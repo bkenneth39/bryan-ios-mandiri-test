@@ -42,7 +42,6 @@ class MovieReviewsPresenter: MovieReviewsViewToPresenterProtocol {
   }
   
   func initData() {
-    print("movieid: \(movieId)")
     view?.showLoading()
     interactor.fetchMovieRevies(param: .init(page: 1, withGenre: movieId))
   }

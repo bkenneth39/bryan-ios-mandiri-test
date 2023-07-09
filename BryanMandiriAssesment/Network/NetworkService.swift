@@ -24,7 +24,6 @@ final class NetworkService {
       case .success(let response):
         do {
           let json = try response.mapJSON()
-//          print(json)
           guard let json = json as? [String: Any] else {return}
           if let data = Mapper<T>().map(JSON: json) {
             completionHandler(data, nil)

@@ -1,15 +1,18 @@
 //
-//  EmptyDataTableViewCell.swift
+//  MovieDetailTrailerTableViewCell.swift
 //  BryanMandiriAssesment
 //
-//  Created by Bryan Kenneth on 08/07/23.
+//  Created by Bryan Kenneth on 09/07/23.
 //
 
 import UIKit
 import Reusable
+import youtube_ios_player_helper
 
-class EmptyDataTableViewCell: UITableViewCell, NibReusable {
+class MovieDetailTrailerTableViewCell: UITableViewCell, NibReusable {
 
+  @IBOutlet var playerTrailer: YTPlayerView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     self.selectionStyle = .none

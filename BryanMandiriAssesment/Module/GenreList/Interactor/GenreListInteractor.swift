@@ -28,7 +28,6 @@ class GenreListInteractor: GenreListPresenterToInteractorProtocol {
       if let error = error {
         self?.presenter?.moviesGenreFetchFailed(message: error.localizedDescription)
       } else if let result = result, let _ = result.genres {
-        print("result: \(result)")
         self?.genres = result
         self?.presenter?.moviesGenreFetchSuccess()
       } else {

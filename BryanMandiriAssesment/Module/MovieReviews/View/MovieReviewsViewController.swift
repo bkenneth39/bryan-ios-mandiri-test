@@ -36,12 +36,10 @@ extension MovieReviewsViewController: MovieReviewsPresenterToViewProtocol {
       let startIndex = (self.presenter?.numberOfItems() ?? 0) - 1 <= 0 ? 0 : (self.presenter?.numberOfItems() ?? 0)
       self.presenter?.getMoreData {
         let endIndex = (self.presenter?.numberOfItems() ?? 0) - 1
-        print("startIndex: \(startIndex), endIndex: \(endIndex)")
         if endIndex > startIndex {
           let indices = Array(startIndex...endIndex).compactMap({
             return IndexPath(row: $0, section: 0)
           })
-          print("finishing infinite")
           tblReviews.reloadData()
         }
         
@@ -106,7 +104,6 @@ extension MovieReviewsViewController: UITableViewDelegate, UITableViewDataSource
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     let date = dateFormatter.date(from: review.createdAt ?? "")
-    print("date: \(review.createdAt) \(date)")
     cell.lblDateCreated.text = date?.getFormattedDate(format: "dd MMM yyyy, HH:MM:SS")
     let font = UIFont.systemFont(ofSize: 14)
     let html = """

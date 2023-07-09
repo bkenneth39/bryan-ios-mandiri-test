@@ -30,8 +30,9 @@ extension MovieDetailViewController: MovieDetailPresenterToViewProtocol {
     tblMovieDetail.register(cellType: MovieDetailInfoTableViewCell.self)
     tblMovieDetail.separatorStyle = .none
     tblMovieDetail.register(headerFooterViewType: SectionHeaderView.self)
-    tblMovieDetail.register(cellType: MovieDetailReviewButtonsTableViewCell.self)
+    tblMovieDetail.register(cellType: MovieDetailTrailerTableViewCell.self)
     tblMovieDetail.register(cellType: MovieDetailOverviewTableViewCell.self)
+    tblMovieDetail.register(cellType: MovieDetailProductionTableViewCell.self)
   }
   
   func showLoading() {
@@ -55,7 +56,6 @@ extension MovieDetailViewController: MovieDetailPresenterToViewProtocol {
 
 extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    print("number: \(presenter?.numberOfItems())")
     return presenter?.numberOfItems() ?? 0
   }
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,6 +68,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     switch sections[indexPath.section] {
     case .generalInfo:
       return 275.0
+    case .production:
+      return 125.0
     default:
       return UITableView.automaticDimension
     }
@@ -92,7 +94,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     case .generalInfo:
       return 0.0
     default:
-      return 50.0
+      return 25.0
     }
   }
   
@@ -105,7 +107,6 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     let movieDetail = presenter?.getDetailMovie()
     guard let sections = sections, let movieDetail = movieDetail else {return UITableViewCell()}
     
-    print("movie Detail: \(movieDetail)")
     switch sections[indexPath.section] {
     case .generalInfo:
       let cell: MovieDetailInfoTableViewCell = tableView.dequeueReusableCell(for: indexPath)
@@ -121,10 +122,10 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
       cell.lblReleaseDate.text = "Release Date: \(date?.getFormattedDate(format: "dd MMM yyyy") ?? "")"
       cell.goToFunction = presenter?.goToReview
       return cell
-    case .userReviews:
-      let cell: MovieDetailReviewButtonsTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+    case .trailer:
+      let cell: MovieDetailTrailerTableViewCell = tableView.dequeueReusableCell(for: indexPath)
       let trailer = presenter?.getMovieTrailer()
-      print("trailer: \(trailer)")
+
       cell.playerTrailer.load(withVideoId: trailer?.key ?? "")
       return cell
     case .overview:
@@ -132,7 +133,9 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
       cell.lblOverview.text = movieDetail.overview
       return cell
     case .production:
-      return UITableViewCell()
+      let cell: MovieDetailProductionTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+      cell.productionCompanies = movieDetail.productionCompanies
+      return cell
     }
   }
   

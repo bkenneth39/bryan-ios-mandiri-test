@@ -28,7 +28,7 @@ protocol MovieDetailPresenterToViewProtocol: AnyObject {
 
 enum MovieDetailSection: String {
   case generalInfo = ""
-  case userReviews = "Trailer"
+  case trailer = "Trailer"
   case overview = "Overview"
   case production = "Producted by"
 }
@@ -39,7 +39,7 @@ class MovieDetailPresenter: MovieDetailViewToPresenterProtocol {
   let router: MovieDetailRouter
   let interactor: MovieDetailInteractor
   let movieId: String
-  let tableSections: [MovieDetailSection] = [.generalInfo, .userReviews, .overview]
+  let tableSections: [MovieDetailSection] = [.generalInfo, .trailer, .overview, .production]
   
   init(view: MovieDetailPresenterToViewProtocol? = nil, router: MovieDetailRouter, interactor: MovieDetailInteractor, movieId: String) {
     self.view = view
@@ -100,7 +100,6 @@ extension MovieDetailPresenter: MovieDetailInteractorToPresenterProtocol {
   func movieDetailFetchSuccess() {
     view?.hideLoading()
     interactor.fetchMovieTrailer(movieId: movieId)
-    print("sukses fetch")
     view?.reloadData()
   }
   

@@ -47,7 +47,6 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
   
   func initData() {
     view?.showLoading()
-    print("genreId: \(genreId)")
     interactor.fetchMovieList(param: .init(page: 1, withGenre: genreId))
     
   }
@@ -67,7 +66,6 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
   }
   
   func numberOfItems() -> Int {
-    print("number of items: \(interactor.movies.count)")
     return interactor.movies.count
   }
   
@@ -83,7 +81,6 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
 extension MovieListPresenter: MovieListinteractorToPresenterProtocol {
   
   func movieListFetchSuccess() {
-    print("movie Fetch Done")
     view?.hideLoading()
     view?.reloadData()
   }

@@ -18,7 +18,7 @@ enum MovieAPI {
 
 extension MovieAPI: TargetType {
   var baseURL: URL {
-    return URL(string: "https://api.themoviedb.org/3")!
+    return URL(string: Constants.baseUrl)!
   }
   
   var path: String {
