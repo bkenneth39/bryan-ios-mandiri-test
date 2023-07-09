@@ -1,7 +1,10 @@
 # bryan-ios-mandiri-test
 
 Technical Assesment for iOS Developer Position (Bryan Kenneth)
+# To Install
+**To run the project**, don't forget **pod install** and change the **signing profile **
 
+# Library Used
 Third Party Library Used: Moya, Object Mapper, Reusable, Kingfisher, SnapKit, UIScrollView-InfiniteScroll, youtube-ios-player-helper
 
 Here are some previews about application requirements:
